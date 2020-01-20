@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<!-- librairie a ajouter explicitement -->
+
+<h:head>
+	<title>Insert title here</title>
+</h:head>
+<body>
+	<h:form>
+		<!--  pour mettre les elements dans un panel -->
+		<!-- on veut ajouter des produits la boutique -->
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<!--  composant qui représente /affiiche les messages -->
+		<p:panelGrid columns="1" id="panel">
+			<p:outputLabel>code produit</p:outputLabel>
+
+			<p:inputText value="#{produitMB.produit.code}" id="code">
+			</p:inputText>
+			<!--  on mets le nom de la session -->
+			<!--  <f:validator validatorId="validators.codeValidators"></f:validator>-->
+			<!--<p:message for="code" style="color:red"></p:message>  -->
+			<p:outputLabel>nom produit</p:outputLabel>
+			<!-- revoir ca -->
+			<!-- et non pas le nom de la classe Bean -->
+			<p:inputText value="#{produitMB.produit.nom}">
+				<f:converter converterId="converters.nameConverter"></f:converter>
+			</p:inputText>
+
+			<p:outputLabel>prix produit</p:outputLabel>
+			<!-- pour afficher des libéllés -->
+
+			<!-- pour ajouter une contrainte de taille au nombre max de chiffres -->
+			<p:inputText value="#{produitMB.produit.prix}"
+				validatorMessage="max 6 chiffres!" id="p">
+				<f:validateLength maximum="6"></f:validateLength>
+			</p:inputText>
+			<p:message for="p" style="color:red"></p:message>
+
+			<p:outputLabel>date de fabrication produit</p:outputLabel>
+
+			<!-- pour ajouter un format de la date -->
+
+			<p:inputText value="#{produitMB.produit.date}"
+				converterMessage="format date requis d-M-yyyy" id="date">
+				<f:convertDateTime pattern="d-M-yyyy"></f:convertDateTime>
+			</p:inputText>
+			<p:message for="date" style="color:red"></p:message>
+
+			<p:inputText value="#{produitMB.produit.date}">
+			</p:inputText>
+			<p:commandButton value="valider"
+				action="#{produitMB.ajouterproduit() }" update="growl,panel"></p:commandButton>
+		</p:panelGrid>
+	</h:form>
+</body>
+
+
+</html>

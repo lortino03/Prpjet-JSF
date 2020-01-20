@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html" 		
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+		<style type="text/css">
+			.ui-stack {
+			z-index:1000;
+				}
+		</style>
+</h:head>
+<body>
+
+ <ui:include src="/header.xhtml"/>
+ 
+ 	<!-- pour creer une formulaire avec button valider -->
+ 
+	<p:panel style="margin-top:5%" header="liste des produits" toggleable ="true" toggleOrientation="vertical">
+	<p:dataTable value= "#{produitMB.produits}" var="prod" id="dt">
+		<p:column>
+			<f:facet name="header"> code produit</f:facet>
+			#{prod.code}
+		</p:column>
+		<p:column>
+			<f:facet name="header"> nom produit</f:facet>
+			#{prod.nom}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header"> prix</f:facet>
+			#{prod.prix}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header"> date de fabrication</f:facet>
+			#{prod.date}
+</p:column>
+</p:dataTable>
+</p:panel>
+
+
+</body>
+</html>
